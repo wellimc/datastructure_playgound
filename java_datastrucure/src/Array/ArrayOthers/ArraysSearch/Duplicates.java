@@ -1,4 +1,4 @@
-package ArraysSearch;
+package Array.ArrayOthers.ArraysSearch;
 
 import java.util.HashSet;
 

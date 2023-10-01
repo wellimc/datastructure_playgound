@@ -1,4 +1,4 @@
-package ArraySum;
+package Array.ArrayOthers.ArraySum;
 
 import java.util.HashMap;
 import java.util.Map;
