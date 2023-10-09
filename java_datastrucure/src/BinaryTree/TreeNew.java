@@ -1,5 +1,8 @@
 package BinaryTree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TreeNew {
 
 
@@ -11,13 +14,13 @@ public class TreeNew {
 
     public static void main(String[] args) {
         TreeNew  tree = new TreeNew();
-       tree.insert(0,4);
+       tree.insert(0,1);
         tree.insert(1,3);
         tree.insert(2,5);
-        tree.insert(3,2);
-        tree.insert(4,1);
-        tree.insert(5,6);
-        tree.insert(6,7);
+        tree.insert(3,7);
+        tree.insert(4,9);
+        tree.insert(5,20);
+        tree.insert(6,30);
 
   /**      tree.insertRecursiveMain(0,4);
         tree.insertRecursiveMain(1,3);
@@ -28,13 +31,13 @@ public class TreeNew {
         tree.insertRecursiveMain(6,7);
         **/
       //  tree.insertRecursiveMain(4,9);
-        tree.printTree();
+        tree.getInorderKeys();
 
         System.out.println(tree.get(5));
         System.out.println(tree.getMin());
         System.out.println(tree.getMax());
-        tree.remove(2);
-        tree.printTree();
+        tree.remove(1);
+        tree.getInorderKeys();
 
     }
 
@@ -48,20 +51,20 @@ public class TreeNew {
 
         TreeNode current = root;
         while(current != null){
-            if (current.value > val) {
+            if ( key < current.key ) {
                 if (current.left == null) {
                     current.left = newNode;
                     return;
                 }
                 current = current.left;
-            } else if (current.value < val) {
+            } else if (key > current.key ) {
                 if (current.right== null) {
                     current.right= newNode;
                     return;
                 }
                 current = current.right;
             }else{
-                current = current;
+                current.value = val;
                 return;
             }
 
@@ -160,7 +163,7 @@ public class TreeNew {
     }
 
     public void remove(int key) {
-        removeRemoveItem(root,key);
+        root = removeRemoveItem(root,key);
     }
 
     public TreeNode removeRemoveItem(TreeNode current , int key) {
@@ -168,9 +171,9 @@ public class TreeNew {
             return null;
         }
 
-        if ( current.key > key){
+        if ( key > current.key  ){
             current.right = removeRemoveItem(current.right,key);
-        } else if (current.key < key) {
+        } else if (key < current.key ) {
             current.left = removeRemoveItem(current.left,key);
         }else{
                 if(current.left == null){
@@ -185,6 +188,24 @@ public class TreeNew {
                 }
         }
         return current;
+
+    }
+
+    public List<Integer> getInorderKeys() {
+        List<Integer> result = new ArrayList<>();
+        TreeNode current = root;
+        printElementInOrder(root,result);
+        return result;
+    }
+
+    private void printElementInOrder(TreeNode node, List<Integer> result ){
+        if ( node == null){
+            return;
+        }
+        printElementInOrder(node.left,result);
+        System.out.println("Current element key :"+node.key +" value :"+ node.value );
+        result.add(node.key);
+        printElementInOrder(node.right,result);
 
     }
 
