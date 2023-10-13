@@ -10,4 +10,21 @@ package BinaryTree;
  * Explanation: The root-to-leaf path with the target sum is shown.
  */
 public class PathSum {
+
+
+    
+
+    static class Node {
+
+        Integer value;
+        Node left;
+        Node right;
+
+        Node(Integer value) {
+            this.value = value;
+            this.left = null;
+            this.right = null;
+
+        }
+    }
 }
